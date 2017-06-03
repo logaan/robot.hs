@@ -1,6 +1,7 @@
 # Toy Robot Simulator
- 
+
 ## Description
+
 * The application is a simulation of a toy robot moving on a square tabletop, of
   dimensions 5 units x 5 units.
 * There are no other obstructions on the table surface.
@@ -9,6 +10,7 @@
   robot falling from the table must be prevented, however further valid movement
   commands must still be allowed.
 * Create an application that can read in commands of the following form -
+
 ```
 PLACE X,Y,F
 MOVE
@@ -16,6 +18,7 @@ LEFT
 RIGHT
 REPORT
 ```
+
 * `PLACE` will put the toy robot on the table in position X,Y and facing NORTH,
   SOUTH, EAST or WEST.
 * The origin (0,0) can be considered to be the SOUTH WEST most corner.
@@ -31,14 +34,14 @@ REPORT
 * A robot that is not on the table can choose to ignore the `MOVE`, `LEFT`,
   `RIGHT` and `REPORT` commands.
 * Provide test data to exercise the application.
- 
- 
+
 ## Constraints
+
 The toy robot must not fall off the table during movement. This also includes
 the initial placement of the toy robot.
 
 Any move that would cause the robot to fall must be ignored.
- 
+
 Example Input and Output:
 
 a)
@@ -47,14 +50,14 @@ a)
     MOVE
     REPORT
     Output: 0,1,NORTH
- 
+
 b)
 
     PLACE 0,0,NORTH
     LEFT
     REPORT
     Output: 0,0,WEST
- 
+
 c)
 
     PLACE 1,2,EAST
@@ -64,7 +67,7 @@ c)
     MOVE
     REPORT
     Output: 3,3,NORTH
- 
- 
+
 ## Deliverables
+
 The source files, the test data and any test code.
