@@ -13,15 +13,15 @@ instance Show Robot where
 
 left :: Direction -> Direction
 left North = West
-left West = South
+left West  = South
 left South = East
-left East = North
+left East  = North
 
 right :: Direction -> Direction
 right North = East 
-right East = South 
+right East  = South 
 right South = West 
-right West = North
+right West  = North
 
 move :: Point -> Direction -> Point
 move (Point x y) North = Point x (y + 1)
@@ -36,4 +36,3 @@ act (Robot table point direction) Data.Left = Robot table point $ left direction
 act (Robot table point direction) Data.Right = Robot table point $ right direction
 act robot Report = robot
 act robot (Commands commands) = foldl act robot commands
-
