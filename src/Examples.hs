@@ -5,12 +5,6 @@ import Direction
 import Robot
 import Run
 
-run :: Run
-run = NewRun (Table 5 5)
-
-doRun :: Command -> [String] -> Bool
-doRun cs output = readLog (act run cs) == output 
-
 -- Examples provided in requirements
 a :: Bool
 a = doRun (Commands [Place (Point 0 0) North, Move, Report])
@@ -38,3 +32,13 @@ noPlaceFirst :: Bool
 noPlaceFirst =
   doRun (Commands [Move, Move])
   ["Started new run with command other than Place"]
+
+-- Runners
+run :: Run
+run = NewRun (Table 5 5)
+
+doRun :: Command -> [String] -> Bool
+doRun cs output = readLogs (act run cs) == output 
+
+allPass :: Bool
+allPass = all id [a, b, c, multiplePlacesAndReports, noPlaceFirst]

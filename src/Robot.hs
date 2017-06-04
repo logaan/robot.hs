@@ -13,9 +13,16 @@ data Command = Place Point Direction
 
 instance Show Robot where show robot = report robot
 
+place :: Robot -> Point -> Direction -> Robot
 place (Robot _ _) point direction = Robot point direction
+
+move :: Robot -> Robot
 move (Robot point direction) = Robot (Direction.move point direction) direction
+
+left :: Robot -> Robot
 left (Robot point direction) = Robot point $ Direction.left direction
+
+right :: Robot -> Robot
 right (Robot point direction) = Robot point $ Direction.right direction
 
 report :: Robot -> String
