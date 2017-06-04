@@ -8,15 +8,33 @@ import Run
 run :: Run
 run = NewRun (Table 5 5)
 
+doRun :: Command -> [String] -> Bool
+doRun cs output = readLog (act run cs) == output 
+
+-- Examples provided in requirements
 a :: Bool
-a = readLog (act run cs) == ["0,1,NORTH"]
-  where cs = Commands [Place (Point 0 0) North, Move, Report]
+a = doRun (Commands [Place (Point 0 0) North, Move, Report])
+          ["0,1,NORTH"]
 
 b :: Bool
-b = readLog (act run cs) == ["0,0,WEST"]
-  where cs = Commands [Place (Point 0 0) North, Robot.Left, Report]
+b = doRun (Commands [Place (Point 0 0) North, Robot.Left, Report])
+    ["0,0,WEST"]
 
 c :: Bool
-c = readLog (act run cs) == ["3,3,NORTH"]
-  where cs = Commands [Place (Point 1 2) East, Move, Move, Robot.Left, Move,
-                       Report]
+c = doRun (Commands [Place (Point 1 2) East, Move, Move, Robot.Left, Move,
+                       Report])
+          ["3,3,NORTH"]
+
+-- Unspecified behaviors
+multiplePlacesAndReports :: Bool
+multiplePlacesAndReports =
+  doRun (Commands [Commands [Place (Point 0 0) North, Move, Report],
+                    Commands [Place (Point 0 0) North, Robot.Left, Report],
+                    Commands [Place (Point 1 2) East, Move, Move, Robot.Left,
+                                 Move, Report]])
+        ["0,1,NORTH", "0,0,WEST", "3,3,NORTH"]
+
+noPlaceFirst :: Bool
+noPlaceFirst =
+  doRun (Commands [Move, Move])
+  ["Started new run with command other than Place"]

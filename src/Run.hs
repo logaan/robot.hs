@@ -36,5 +36,5 @@ act (FailedRun reason) _ = FailedRun reason
 
 readLog :: Run -> [String]
 readLog (NewRun table) = []
-readLog (Run _ _ log) = log
+readLog (Run _ _ log) = reverse log
 readLog (FailedRun reason) = [reason]
