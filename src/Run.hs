@@ -8,13 +8,6 @@ type Reason = String
 append :: String -> Log -> Log
 append string log = string:log
 
--- NewRun and Run could be different types but having them be the same lets us
--- fold commands into a NewRun and return a Run. Also it seems reasonable to
--- have an implementation of log for NewRun that returns an empty list. And this
--- is better than having `Run Table (Maybe Robot) (Maybe Log)`.
-
--- Should there be a failed run constructor for sets of commands that don't
--- start with a place?
 data Run = NewRun Table
          | Run Table Robot Log
          | FailedRun Reason
