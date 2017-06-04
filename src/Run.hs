@@ -15,10 +15,9 @@ append string log = string:log
 
 -- Should there be a failed run constructor for sets of commands that don't
 -- start with a place?
-data Run =
-  NewRun Table |
-  Run Table Robot Log |
-  FailedRun Reason
+data Run = NewRun Table
+         | Run Table Robot Log
+         | FailedRun Reason
 
 act :: Run -> Command -> Run
 act (NewRun table) (Place point direction) = Run table (Robot point direction) []
