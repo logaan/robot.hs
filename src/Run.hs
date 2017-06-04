@@ -22,6 +22,7 @@ data Run =
 
 act :: Run -> Command -> Run
 act (NewRun table) (Place point direction) = Run table (Robot point direction) []
+act (NewRun table) (Commands commands) = foldl act (NewRun table) commands
 act (NewRun _) _ = FailedRun "Started new run with command other than Place"
 
 act (Run table robot log) (Place point direction) = Run table (place robot point direction) log
@@ -32,3 +33,8 @@ act (Run table robot log) Report = Run table robot (append (report robot) log)
 act run (Commands commands) = foldl act run commands
 
 act (FailedRun reason) _ = FailedRun reason
+
+readLog :: Run -> [String]
+readLog (NewRun table) = []
+readLog (Run _ _ log) = log
+readLog (FailedRun reason) = [reason]

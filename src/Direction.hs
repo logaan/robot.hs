@@ -3,7 +3,13 @@ module Direction where
 import Point
 
 data Direction = North | South | East | West
-  deriving Show
+
+-- Deriving Show would not get us the capitalised output required.
+instance Show Direction where
+  show North = "NORTH"
+  show South = "SOUTH"
+  show East  = "EAST"
+  show West  = "WEST"
 
 left :: Direction -> Direction
 left North = West

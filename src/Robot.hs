@@ -20,4 +20,4 @@ right (Robot point direction) = Robot point $ Direction.right direction
 
 report :: Robot -> String
 report (Robot (Point x y) direction) =
-  show x ++ "," ++ show y ++ " " ++ show direction
+  show x ++ "," ++ show y ++ "," ++ show direction
