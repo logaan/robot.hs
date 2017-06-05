@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Call like `./scripts/exec examples/a`
+
+stack exec robot-exe $1
