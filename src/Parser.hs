@@ -5,6 +5,9 @@ import Point
 import Direction
 import qualified Robot as R
 
+parseCommands :: String -> Either ParseError R.Command
+parseCommands input = parse commands "(unknown)" input
+
 commands :: Parser R.Command
 commands = R.Commands <$> endBy command eol
 
@@ -39,12 +42,12 @@ direction = choice [ North <$ string "NORTH"
                    , West  <$ string "WEST"
                    ]
 
-eol :: Parser Char
-eol = char '\n'
-      <?> "EOL"
+eol :: Parser String
+eol = choice [ try (string "\n\r")
+             , try (string "\r\n")
+             , string "\n"
+             , string "\r"
+             ]
 
 int :: Parser Int
 int = read <$> many1 digit
-
-parseCommands :: String -> Either ParseError R.Command
-parseCommands input = parse commands "(unknown)" input
