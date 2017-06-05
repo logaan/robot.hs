@@ -10,6 +10,7 @@ data Command = Place Point Direction
              | Right
              | Report
              | Commands [Command]
+             deriving Show
 
 instance Show Robot where show robot = report robot
 
