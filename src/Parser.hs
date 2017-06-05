@@ -22,9 +22,9 @@ command = choice [place
 
 place :: Parser R.Command
 place = do
-  _ <- string "PLACE "
-  point <- point
-  _ <- char ','
+  _         <- string "PLACE "
+  point     <- point
+  _         <- char ','
   direction <- direction
   return $ R.Place point direction
 
