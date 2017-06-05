@@ -1,20 +1,18 @@
-module Lib
-    ( runCommandFile
-    ) where
+module Lib (runCommandFile) where
 
 import Parser
 import Run
 import qualified Robot as R
 
-run :: Run
-run = NewRun (Table 5 5)
+runCommandFile :: String -> IO ()
+runCommandFile path = do
+  contents <- readFile path
+  putStrLn $ show (case (parseCommands contents) of
+                     Left _ -> ["Failed to parse."]
+                     Right result -> doRun result)
 
 doRun :: R.Command -> [String]
 doRun cs = readLogs (act run cs)
 
-runCommandFile :: IO ()
-runCommandFile = do
-  contents <- readFile "examples/b"
-  putStrLn $ show (case (parseCommands contents) of
-                     Left _ -> ["Failed to parse."]
-                     Right result -> doRun result)
+run :: Run
+run = NewRun (Table 5 5)

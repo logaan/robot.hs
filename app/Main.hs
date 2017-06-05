@@ -1,6 +1,9 @@
 module Main where
 
 import Lib
+import System.Environment
 
 main :: IO ()
-main = runCommandFile
+main = do
+  args <- getArgs
+  runCommandFile (args !! 0)
