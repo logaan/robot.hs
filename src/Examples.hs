@@ -30,8 +30,8 @@ multiplePlacesAndReports =
 
 noPlaceFirst :: Bool
 noPlaceFirst =
-  doRun (Commands [Move, Move])
-  ["Started new run with command other than Place"]
+  doRun (Commands [Move, Move, Report])
+  []
 
 -- Runners
 run :: Run
