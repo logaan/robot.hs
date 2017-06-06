@@ -24,7 +24,12 @@ unit testing tool is used as I'm unfamiliar with the ecosystem.
 
 Additional testing could be done with QuickCheck, perhaps testing that
 no series of commands can cause a robot to move off the table. I believe many
-other erroneous states should be unrepresentable with the datatypes chosen.
+other erroneous states should be unrepresentable with the data types chosen.
+
+I'm not sure what norms regarding test granularity are in Haskell. I've written
+less tests than I would for a dynamically typed language as I'm more confident
+errors will be reported by the type checker. Also that these errors when found
+will point to the root of the issue and so granular tests are less helpful.
 
 ## Checking with new commands
 
