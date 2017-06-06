@@ -28,10 +28,15 @@ multiplePlacesAndReports =
                                  Move, Report]])
         ["0,1,NORTH", "0,0,WEST", "3,3,NORTH"]
 
-noPlaceFirst :: Bool
-noPlaceFirst =
+noPlace :: Bool
+noPlace =
   doRun (Commands [Move, Move, Report])
   []
+
+latePlace :: Bool
+latePlace =
+  doRun (Commands [Move, Move, Report, Place (Point 0 0) North, Move, Report])
+  ["0,1,NORTH"]
 
 -- Runners
 run :: Run
@@ -41,4 +46,4 @@ doRun :: Command -> [String] -> Bool
 doRun cs output = readLogs (act run cs) == output 
 
 allPass :: Bool
-allPass = all id [a, b, c, multiplePlacesAndReports, noPlaceFirst]
+allPass = all id [a, b, c, multiplePlacesAndReports, noPlace, latePlace]
