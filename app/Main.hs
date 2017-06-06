@@ -6,4 +6,5 @@ import System.Environment
 main :: IO ()
 main = do
   args <- getArgs
-  runCommandFile (args !! 0)
+  case args of (x:_) -> runCommandFile x
+               [] -> putStrLn "Please provide a file path."

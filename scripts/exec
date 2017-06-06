@@ -2,4 +2,5 @@
 
 # Call like `./scripts/exec examples/a`
 
+./scripts/build
 stack exec robot-exe $1

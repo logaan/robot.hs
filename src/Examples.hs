@@ -19,7 +19,7 @@ c = doRun (Commands [Place (Point 1 2) East, Move, Move, Robot.Left, Move,
                        Report])
           ["3,3,NORTH"]
 
--- Unspecified behaviors
+-- Other requirements
 multiplePlacesAndReports :: Bool
 multiplePlacesAndReports =
   doRun (Commands [Commands [Place (Point 0 0) North, Move, Report],
